@@ -15,6 +15,7 @@ class _DemoPaymentPageState extends State<DemoPaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text("Demo payment"),
       ),
       body: Padding(

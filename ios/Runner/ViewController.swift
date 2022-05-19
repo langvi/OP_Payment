@@ -10,7 +10,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tfInfomationOrder: UITextField!
     @IBOutlet weak var tfAmount: UITextField!
-    static let ACCESS_CODE_PAYGATE = "22772CEF" // Onepay send for merchant
+    static let ACCESS_CODE_PAYGATE = "6BEB2546" // Onepay send for merchant
     static let MERCHANT_PAYGATE = "TESTONEPAY" //  Merchant register with onepay
     static let HASH_KEY = "6D0870CDE5F24F34F3915FB0045120DB" // Onepay send for merchant
     static let URL_SCHEMES = "OnepayPaygateIOSDemo" // get CFBundleURLSchemes in Info.plist

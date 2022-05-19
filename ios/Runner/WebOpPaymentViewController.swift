@@ -7,16 +7,17 @@
 
 import UIKit
 import WebKit
+import SwiftUI
 
 public protocol WebOnepayPaymentViewDelegate: class {
     /// Handle payment results returned by onepay
-        /// - Parameters:
-        ///      - paymentViewController: WebOnepayPaymentViewController
-        ///      -  isSuccess: result payment ( true = success, false = failed)
-        ///      -  amount: amount of order
-        ///      -  transactionNo: transaction no to cdr
-        /// - Returns: nil
-        /// - Note: Handle payment results returned by onepay, you can handle hidden paymentViewController or open another paymentViewController depending on your business
+    /// - Parameters:
+    ///      - paymentViewController: WebOnepayPaymentViewController
+    ///      -  isSuccess: result payment ( true = success, false = failed)
+    ///      -  amount: amount of order
+    ///      -  transactionNo: transaction no to cdr
+    /// - Returns: nil
+    /// - Note: Handle payment results returned by onepay, you can handle hidden paymentViewController or open another paymentViewController depending on your business
     func resultOrderPayment(
         paymentViewController: UIViewController,
         isSuccess: Bool,
@@ -33,25 +34,25 @@ public protocol WebOnepayPaymentViewDelegate: class {
         version: String)
     
     /// Handle loading when visible controller equals WebOnepayPaymentViewController
-        /// - Parameters:
-        ///      - paymentViewController: WebOnepayPaymentViewController
-        /// - Returns: nil
-        /// - Note: Handle show loading when open web proccessing
+    /// - Parameters:
+    ///      - paymentViewController: WebOnepayPaymentViewController
+    /// - Returns: nil
+    /// - Note: Handle show loading when open web proccessing
     func showLoading(paymentViewController: UIViewController)
     
     /// Handle loading done when visible controller equals WebOnepayPaymentViewController
-        /// - Parameters:
-        ///      - paymentViewController: WebOnepayPaymentViewController
-        /// - Returns: nil
-        /// - Note: Handle hidden loading when open web proccessing
+    /// - Parameters:
+    ///      - paymentViewController: WebOnepayPaymentViewController
+    /// - Returns: nil
+    /// - Note: Handle hidden loading when open web proccessing
     func hidenLoading(paymentViewController: UIViewController)
     
     /// create url which direct web onepay to payment oder
-        /// - Parameters:
-        ///      - paymentViewController: WebOnepayPaymentViewController
-        ///      -  error: order information
-        /// - Returns: nil
-        /// - Note: Handle errors returned by onepay, See also the error codes described below this document
+    /// - Parameters:
+    ///      - paymentViewController: WebOnepayPaymentViewController
+    ///      -  error: order information
+    /// - Returns: nil
+    /// - Note: Handle errors returned by onepay, See also the error codes described below this document
     func failConnect(paymentViewController: UIViewController, error: OnepayErrorResult)
 }
 
@@ -73,39 +74,43 @@ public class OnepayErrorResult: Error {
 }
 
 public class WebOnepayPaymentViewController: UIViewController {
-
+    
     @IBOutlet weak var webView: WKWebView!
+    
     public var orderPayment: OnepayPaymentEntity?
     public weak var delegate: WebOnepayPaymentViewDelegate?
-    
+    public var result: FlutterResult?
     var dictApp = [
-                "f5smartaccount" : "id1470378562",
-                "viviet" : "id1055088382",
-                "kienlongbankmobilebanking" : "id1492432328",
-                "oceanbankmobilebanking" : "id1033968672",
-                "acbapp" : "id950141024",
-                "vietbankmobilebanking" : "id1469883896",
-                "vabmobilebanking" : "id910897337",
-                "Sgbmobile" : "id954973621",
-                "seabankmobile" : "id846407152",
-                "bidcvnmobile" : "id1043501726",
-                "eximbankmobile" : "id1242260338",
-                "qpaymobile" : "id1292194225",
-                "vibmobile" : "id949371011",
-                "shbmobile" : "id538278798",
-                "ncbsmartbanking" : "id1111830467",
-                "ivbmobilebanking" : "id1096963960",
-                "abbankmobile" : "id1137160023",
-                "scbmobilebanking" : "id954973621",
-                "vpbankonline" : "id1209349510",
-                "msbmobile" : "id436134873",
-                "vietinbankmobile" : "id689963454",
-                "bidvsmartbanking" : "id1061867449",
-                "agribankmobile" : "id935944952",
-                "vcbpaymobile" : "id1408592505",
-                "vietcombankmobile" : "id561433133",
+        "f5smartaccount" : "id1470378562",
+        "viviet" : "id1055088382",
+        "kienlongbankmobilebanking" : "id1492432328",
+        "oceanbankmobilebanking" : "id1033968672",
+        "acbapp" : "id950141024",
+        "vietbankmobilebanking" : "id1469883896",
+        "vabmobilebanking" : "id910897337",
+        "Sgbmobile" : "id954973621",
+        "seabankmobile" : "id846407152",
+        "bidcvnmobile" : "id1043501726",
+        "eximbankmobile" : "id1242260338",
+        "qpaymobile" : "id1292194225",
+        "vibmobile" : "id949371011",
+        "shbmobile" : "id538278798",
+        "ncbsmartbanking" : "id1111830467",
+        "ivbmobilebanking" : "id1096963960",
+        "abbankmobile" : "id1137160023",
+        "scbmobilebanking" : "id954973621",
+        "vpbankonline" : "id1209349510",
+        "msbmobile" : "id436134873",
+        "vietinbankmobile" : "id689963454",
+        "bidvsmartbanking" : "id1061867449",
+        "agribankmobile" : "id935944952",
+        "vcbpaymobile" : "id1408592505",
+        "vietcombankmobile" : "id561433133",
     ]
-    
+    @objc private func popViewController() {
+        // Add custom logic code
+        navigationController?.popViewController(animated: true)
+    }
     public override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -206,6 +211,12 @@ extension WebOnepayPaymentViewController: WKNavigationDelegate {
                     transactionNo: url.getQueryStringParameter(param: "vpc_TransactionNo"),
                     version: url.getQueryStringParameter(param: "vpc_Version"))
                 decisionHandler(.cancel)
+                // callback to flutter
+                if result != nil {
+                    
+                    result!(isSuccess)
+                }
+                popViewController()
                 return
             }else if url.absoluteString.starts(with: OpPayment.AGAIN_LINK) {
                 decisionHandler(.cancel)
@@ -222,8 +233,8 @@ extension WebOnepayPaymentViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse,
-                 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-
+                        decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        
         if let response = navigationResponse.response as? HTTPURLResponse {
             if response.statusCode > 299 {
                 let errorCase = OnepayErrorResult(errorCase: OnepayErrorCase.WEB_ONEPAY_STATUS_500)
@@ -236,3 +247,6 @@ extension WebOnepayPaymentViewController: WKNavigationDelegate {
 }
 
 
+class TopView: UIView{
+    
+}

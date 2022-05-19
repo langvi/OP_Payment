@@ -10,7 +10,8 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		3E3FF95617C782E0B25851B4 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB548191BEDC5C527E8E3873 /* Pods_Runner.framework */; };
-		693FF3A72835E41800A5BA26 /* WebOnepayPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 693FF3A62835E41800A5BA26 /* WebOnepayPaymentViewController.xib */; };
+		693FF3A9283647B900A5BA26 /* WebOnepayPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 693FF3A8283647B900A5BA26 /* WebOnepayPaymentViewController.xib */; };
+		693FF3AB2836490E00A5BA26 /* WebOpPaymentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693FF3AA2836490E00A5BA26 /* WebOpPaymentViewController.storyboard */; };
 		69D151B0283339920029FB7F /* OpPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D151AF283339920029FB7F /* OpPayment.swift */; };
 		69D151B3283347450029FB7F /* SecureHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D151B2283347450029FB7F /* SecureHash.swift */; };
 		69D151B5283353050029FB7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D151B4283353050029FB7F /* SceneDelegate.swift */; };
@@ -42,7 +43,8 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		214C1479F854B3E953CC21FE /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		693FF3A62835E41800A5BA26 /* WebOnepayPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebOnepayPaymentViewController.xib; path = ../../../WebOnepayPaymentViewController.xib; sourceTree = "<group>"; };
+		693FF3A8283647B900A5BA26 /* WebOnepayPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebOnepayPaymentViewController.xib; path = ../../../WebOnepayPaymentViewController.xib; sourceTree = "<group>"; };
+		693FF3AA2836490E00A5BA26 /* WebOpPaymentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebOpPaymentViewController.storyboard; sourceTree = "<group>"; };
 		69D151AF283339920029FB7F /* OpPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpPayment.swift; sourceTree = "<group>"; };
 		69D151B1283343550029FB7F /* OnepayPaygateIOSSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnepayPaygateIOSSdk.h; sourceTree = "<group>"; };
 		69D151B2283347450029FB7F /* SecureHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureHash.swift; sourceTree = "<group>"; };
@@ -119,7 +121,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
-				693FF3A62835E41800A5BA26 /* WebOnepayPaymentViewController.xib */,
+				693FF3A8283647B900A5BA26 /* WebOnepayPaymentViewController.xib */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -135,6 +137,7 @@
 				69D151B6283354060029FB7F /* ViewController.swift */,
 				69D151B8283355160029FB7F /* ResultPaymentViewController.swift */,
 				69D151BA283355770029FB7F /* WebOpPaymentViewController.swift */,
+				693FF3AA2836490E00A5BA26 /* WebOpPaymentViewController.storyboard */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -212,9 +215,10 @@
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				693FF3AB2836490E00A5BA26 /* WebOpPaymentViewController.storyboard in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				693FF3A72835E41800A5BA26 /* WebOnepayPaymentViewController.xib in Resources */,
+				693FF3A9283647B900A5BA26 /* WebOnepayPaymentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

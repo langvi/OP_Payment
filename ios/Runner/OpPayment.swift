@@ -28,7 +28,7 @@ public class OnepayPaymentEntity {
 public class OpPayment{
    
     public static let shared = OpPayment()
-    private static let LINK_PAYGATE = "https://onepay.vn/paygate/vpcpay.op"
+    private static let LINK_PAYGATE = "https://mtf.onepay.vn/paygate/vpcpay.op"
     private static let VERSION_PAYGATE = "2"
     private static let COMMAND_PAYGATE = "pay"
     private static let TICKET_NO = "10.2.20.1"
@@ -99,8 +99,8 @@ public class OpPayment{
         var dict = [
             "vpc_Version":version,
             "vpc_Command":command,
-            "vpc_AccessCode":accessCode,
-            "vpc_Merchant":merchant,
+            "vpc_AccessCode":"6BEB2546",
+            "vpc_Merchant":"TESTONEPAY",
             "vpc_Locale":languageString,
             "vpc_ReturnURL":returnURL,
             "vpc_MerchTxnRef":merchTxnRef,
