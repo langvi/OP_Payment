@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //        self.tfInfomationOrder.text = "\(ViewController.MERCHANT_PAYGATE) test"
-        //        self.tfAmount.text = "1000"
-        //        self.tfAmount.keyboardType = .decimalPad
+        self.tfInfomationOrder.text = "\(ViewController.MERCHANT_PAYGATE) test"
+        self.tfAmount.text = "1000"
+        self.tfAmount.keyboardType = .decimalPad
     }
     
     @IBAction func payment(_ sender: Any) {
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     }
     
     func openResultViewController(viewcontroller: UIViewController,message: String) {
-        let storybroad = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storybroad = UIStoryboard(name: "Main1", bundle: Bundle.main)
         let controller = storybroad.instantiateViewController(withIdentifier: "ResultPaymentViewController") as! ResultPaymentViewController
         controller.message = message
         viewcontroller.present(controller, animated: true, completion: nil)

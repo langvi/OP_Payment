@@ -213,7 +213,6 @@ extension WebOnepayPaymentViewController: WKNavigationDelegate {
                 decisionHandler(.cancel)
                 // callback to flutter
                 if result != nil {
-                    
                     result!(isSuccess)
                 }
                 popViewController()
@@ -244,9 +243,4 @@ extension WebOnepayPaymentViewController: WKNavigationDelegate {
         }
         decisionHandler(.allow)
     }
-}
-
-
-class TopView: UIView{
-    
 }
